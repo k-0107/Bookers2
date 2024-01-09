@@ -3,6 +3,7 @@ before_action :is_matching_login_user, only: [:edit, :update]
   def index
     @books = Book.all
     @book = Book.new
+    @user = User.find(current_user.id)
   end
   
   def create
@@ -19,6 +20,7 @@ before_action :is_matching_login_user, only: [:edit, :update]
 
   def show
     @book = Book.find(params[:id])
+    @user = User.find(current_user.id)
   end
   
   def edit
