@@ -1,7 +1,7 @@
   <h1>Book detail</h1>
   <div>
     <%= link_to book_path(@book.id) do %>
-      <p><%= image_tag @book.get_image %></p>
+      <p><%= image_tag @book.user.get_profile_image(100,100) %></p>
     <% end %>
     <p><%= @book.user.name %></p>
     <p><%= link_to @book.title, book_path(@book.id) %></p>
