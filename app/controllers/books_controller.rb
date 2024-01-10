@@ -13,6 +13,7 @@ before_action :is_matching_login_user, only: [:edit, :update]
       redirect_to book_path(@book.id)
       flash[:notice] = "successfully"
     else
+      @user = User.find(current_user.id)
       @books = Book.all
       render "books/index"
     end
@@ -21,6 +22,7 @@ before_action :is_matching_login_user, only: [:edit, :update]
   def show
     @book = Book.find(params[:id])
     @user = User.find(current_user.id)
+    @book_new = Book.new
   end
   
   def edit
@@ -31,7 +33,7 @@ before_action :is_matching_login_user, only: [:edit, :update]
     @book = Book.find(params[:id])
     if @book.update(book_params)
       redirect_to(book_path(@book.id))
-      flash[:notice] ="Book was successfully updated."
+      flash[:notice] ="successfully"
     else
       render "books/edit"
     end
